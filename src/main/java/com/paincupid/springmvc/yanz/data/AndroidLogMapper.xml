@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paincupid.springmvc.yanz.data.AndroidLogMapper">
+  <resultMap id="BaseResultMap" type="com.paincupid.springmvc.yanz.model.AndroidLog">
+    <id column="iAutoId" jdbcType="INTEGER" property="iautoid" />
+    <result column="cUserId" jdbcType="VARCHAR" property="cuserid" />
+    <result column="cMacId" jdbcType="VARCHAR" property="cmacid" />
+    <result column="cFunction" jdbcType="VARCHAR" property="cfunction" />
+    <result column="cDescription" jdbcType="NVARCHAR" property="cdescription" />
+    <result column="cType" jdbcType="VARCHAR" property="ctype" />
+    <result column="cMethod" jdbcType="VARCHAR" property="cmethod" />
+    <result column="cParams" jdbcType="VARCHAR" property="cparams" />
+    <result column="cCreateBy" jdbcType="VARCHAR" property="ccreateby" />
+    <result column="dCreateDate" jdbcType="TIMESTAMP" property="dcreatedate" />
+    <result column="cRequestIp" jdbcType="VARCHAR" property="crequestip" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    iAutoId, cUserId, cMacId, cFunction, cDescription, cType, cMethod, cParams, cCreateBy, 
+    dCreateDate, cRequestIp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_AndroidLog
+    where iAutoId = #{iautoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_AndroidLog
+    where iAutoId = #{iautoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.paincupid.springmvc.yanz.model.AndroidLog">
+    insert into S_AndroidLog (iAutoId, cUserId, cMacId, 
+      cFunction, cDescription, cType, 
+      cMethod, cParams, cCreateBy, 
+      dCreateDate, cRequestIp)
+    values (#{iautoid,jdbcType=INTEGER}, #{cuserid,jdbcType=VARCHAR}, #{cmacid,jdbcType=VARCHAR}, 
+      #{cfunction,jdbcType=VARCHAR}, #{cdescription,jdbcType=NVARCHAR}, #{ctype,jdbcType=VARCHAR}, 
+      #{cmethod,jdbcType=VARCHAR}, #{cparams,jdbcType=VARCHAR}, #{ccreateby,jdbcType=VARCHAR}, 
+      #{dcreatedate,jdbcType=TIMESTAMP}, #{crequestip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.paincupid.springmvc.yanz.model.AndroidLog">
+    insert into S_AndroidLog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="iautoid != null">
+        iAutoId,
+      </if>
+      <if test="cuserid != null">
+        cUserId,
+      </if>
+      <if test="cmacid != null">
+        cMacId,
+      </if>
+      <if test="cfunction != null">
+        cFunction,
+      </if>
+      <if test="cdescription != null">
+        cDescription,
+      </if>
+      <if test="ctype != null">
+        cType,
+      </if>
+      <if test="cmethod != null">
+        cMethod,
+      </if>
+      <if test="cparams != null">
+        cParams,
+      </if>
+      <if test="ccreateby != null">
+        cCreateBy,
+      </if>
+      <if test="dcreatedate != null">
+        dCreateDate,
+      </if>
+      <if test="crequestip != null">
+        cRequestIp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="iautoid != null">
+        #{iautoid,jdbcType=INTEGER},
+      </if>
+      <if test="cuserid != null">
+        #{cuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmacid != null">
+        #{cmacid,jdbcType=VARCHAR},
+      </if>
+      <if test="cfunction != null">
+        #{cfunction,jdbcType=VARCHAR},
+      </if>
+      <if test="cdescription != null">
+        #{cdescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="ctype != null">
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="cmethod != null">
+        #{cmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="cparams != null">
+        #{cparams,jdbcType=VARCHAR},
+      </if>
+      <if test="ccreateby != null">
+        #{ccreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="dcreatedate != null">
+        #{dcreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crequestip != null">
+        #{crequestip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.paincupid.springmvc.yanz.model.AndroidLog">
+    update S_AndroidLog
+    <set>
+      <if test="cuserid != null">
+        cUserId = #{cuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmacid != null">
+        cMacId = #{cmacid,jdbcType=VARCHAR},
+      </if>
+      <if test="cfunction != null">
+        cFunction = #{cfunction,jdbcType=VARCHAR},
+      </if>
+      <if test="cdescription != null">
+        cDescription = #{cdescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="ctype != null">
+        cType = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="cmethod != null">
+        cMethod = #{cmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="cparams != null">
+        cParams = #{cparams,jdbcType=VARCHAR},
+      </if>
+      <if test="ccreateby != null">
+        cCreateBy = #{ccreateby,jdbcType=VARCHAR},
+      </if>
+      <if test="dcreatedate != null">
+        dCreateDate = #{dcreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crequestip != null">
+        cRequestIp = #{crequestip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where iAutoId = #{iautoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.paincupid.springmvc.yanz.model.AndroidLog">
+    update S_AndroidLog
+    set cUserId = #{cuserid,jdbcType=VARCHAR},
+      cMacId = #{cmacid,jdbcType=VARCHAR},
+      cFunction = #{cfunction,jdbcType=VARCHAR},
+      cDescription = #{cdescription,jdbcType=NVARCHAR},
+      cType = #{ctype,jdbcType=VARCHAR},
+      cMethod = #{cmethod,jdbcType=VARCHAR},
+      cParams = #{cparams,jdbcType=VARCHAR},
+      cCreateBy = #{ccreateby,jdbcType=VARCHAR},
+      dCreateDate = #{dcreatedate,jdbcType=TIMESTAMP},
+      cRequestIp = #{crequestip,jdbcType=VARCHAR}
+    where iAutoId = #{iautoid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paincupid.springmvc.yanz.data.PeopleMapper">
+  <resultMap id="BaseResultMap" type="com.paincupid.springmvc.yanz.model.People">
+    <id column="cPsCode" jdbcType="NVARCHAR" property="cpscode" />
+    <result column="cPsName" jdbcType="NVARCHAR" property="cpsname" />
+    <result column="cPsSex" jdbcType="NVARCHAR" property="cpssex" />
+    <result column="cPsDepartmentCode" jdbcType="NVARCHAR" property="cpsdepartmentcode" />
+    <result column="cPsDepartmentName" jdbcType="NVARCHAR" property="cpsdepartmentname" />
+    <result column="bPsAttendCheck" jdbcType="BIT" property="bpsattendcheck" />
+    <result column="cPsNational" jdbcType="NVARCHAR" property="cpsnational" />
+    <result column="cPsHDCode" jdbcType="NVARCHAR" property="cpshdcode" />
+    <result column="cPsBankAccount" jdbcType="NVARCHAR" property="cpsbankaccount" />
+    <result column="cPsEmail" jdbcType="NVARCHAR" property="cpsemail" />
+    <result column="cPsPhoneNumber" jdbcType="NVARCHAR" property="cpsphonenumber" />
+    <result column="dPsBirthday" jdbcType="TIMESTAMP" property="dpsbirthday" />
+    <result column="dPsHareDay" jdbcType="TIMESTAMP" property="dpshareday" />
+    <result column="dPsFireDay" jdbcType="TIMESTAMP" property="dpsfireday" />
+    <result column="bPsPieceWork" jdbcType="BIT" property="bpspiecework" />
+    <result column="bPsRegular" jdbcType="BIT" property="bpsregular" />
+    <result column="bPsOperator" jdbcType="BIT" property="bpsoperator" />
+    <result column="cPsPassword" jdbcType="NVARCHAR" property="cpspassword" />
+    <result column="mPsAuthority" jdbcType="NVARCHAR" property="mpsauthority" />
+    <result column="fPsSelfTimes" jdbcType="DOUBLE" property="fpsselftimes" />
+    <result column="fPsPwTimes" jdbcType="DOUBLE" property="fpspwtimes" />
+    <result column="cPsPostCode" jdbcType="NVARCHAR" property="cpspostcode" />
+    <result column="cPsPostName" jdbcType="NVARCHAR" property="cpspostname" />
+    <result column="bPsManager" jdbcType="BIT" property="bpsmanager" />
+    <result column="fPsBasicSalary" jdbcType="DOUBLE" property="fpsbasicsalary" />
+    <result column="fPsYearSubsidy" jdbcType="DOUBLE" property="fpsyearsubsidy" />
+    <result column="cPsTitleCode" jdbcType="NVARCHAR" property="cpstitlecode" />
+    <result column="cPsTitleName" jdbcType="NVARCHAR" property="cpstitlename" />
+    <result column="fPsTitleSubsidy" jdbcType="DOUBLE" property="fpstitlesubsidy" />
+    <result column="fPsHelthSubsidy" jdbcType="DOUBLE" property="fpshelthsubsidy" />
+    <result column="fPsFixSubsidy1" jdbcType="DOUBLE" property="fpsfixsubsidy1" />
+    <result column="fPsFixSubsidy2" jdbcType="DOUBLE" property="fpsfixsubsidy2" />
+    <result column="fPsOtherSubsidy1" jdbcType="DOUBLE" property="fpsothersubsidy1" />
+    <result column="fPSFree1" jdbcType="DOUBLE" property="fpsfree1" />
+    <result column="cPSFree2" jdbcType="VARCHAR" property="cpsfree2" />
+    <result column="cPSEducationCode" jdbcType="NVARCHAR" property="cpseducationcode" />
+    <result column="cPsEducationName" jdbcType="NVARCHAR" property="cpseducationname" />
+    <result column="fPSEducationSubsidy" jdbcType="CHAR" property="fpseducationsubsidy" />
+    <result column="fPsPerformanceSalary" jdbcType="DOUBLE" property="fpsperformancesalary" />
+    <result column="fPsYLBX" jdbcType="DOUBLE" property="fpsylbx" />
+    <result column="fPSSYBX" jdbcType="DOUBLE" property="fpssybx" />
+    <result column="fPsYiLBX" jdbcType="DOUBLE" property="fpsyilbx" />
+    <result column="bPSNeedSalaryCalculate" jdbcType="BIT" property="bpsneedsalarycalculate" />
+    <result column="cPsWorkTypeCode" jdbcType="NVARCHAR" property="cpsworktypecode" />
+    <result column="cPsWorkTypeName" jdbcType="NVARCHAR" property="cpsworktypename" />
+    <result column="cPsWorkTypeRatioName" jdbcType="NVARCHAR" property="cpsworktyperationame" />
+    <result column="fPsWorkTypeRation" jdbcType="DECIMAL" property="fpsworktyperation" />
+    <result column="cPSIncludedDepartmentCode" jdbcType="NVARCHAR" property="cpsincludeddepartmentcode" />
+    <result column="cPSIncludedDepartmentName" jdbcType="NVARCHAR" property="cpsincludeddepartmentname" />
+    <result column="fPsEquipmentSubsidy" jdbcType="DECIMAL" property="fpsequipmentsubsidy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cPsCode, cPsName, cPsSex, cPsDepartmentCode, cPsDepartmentName, bPsAttendCheck, cPsNational, 
+    cPsHDCode, cPsBankAccount, cPsEmail, cPsPhoneNumber, dPsBirthday, dPsHareDay, dPsFireDay, 
+    bPsPieceWork, bPsRegular, bPsOperator, cPsPassword, mPsAuthority, fPsSelfTimes, fPsPwTimes, 
+    cPsPostCode, cPsPostName, bPsManager, fPsBasicSalary, fPsYearSubsidy, cPsTitleCode, 
+    cPsTitleName, fPsTitleSubsidy, fPsHelthSubsidy, fPsFixSubsidy1, fPsFixSubsidy2, fPsOtherSubsidy1, 
+    fPSFree1, cPSFree2, cPSEducationCode, cPsEducationName, fPSEducationSubsidy, fPsPerformanceSalary, 
+    fPsYLBX, fPSSYBX, fPsYiLBX, bPSNeedSalaryCalculate, cPsWorkTypeCode, cPsWorkTypeName, 
+    cPsWorkTypeRatioName, fPsWorkTypeRation, cPSIncludedDepartmentCode, cPSIncludedDepartmentName, 
+    fPsEquipmentSubsidy
+  </sql>
+  <select id="selectByExample" parameterType="com.paincupid.springmvc.yanz.model.PeopleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from B_Person
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from B_Person
+    where cPsCode = #{cpscode,jdbcType=NVARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from B_Person
+    where cPsCode = #{cpscode,jdbcType=NVARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.paincupid.springmvc.yanz.model.PeopleExample">
+    delete from B_Person
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.paincupid.springmvc.yanz.model.People">
+    insert into B_Person (cPsCode, cPsName, cPsSex, 
+      cPsDepartmentCode, cPsDepartmentName, 
+      bPsAttendCheck, cPsNational, cPsHDCode, 
+      cPsBankAccount, cPsEmail, cPsPhoneNumber, 
+      dPsBirthday, dPsHareDay, dPsFireDay, 
+      bPsPieceWork, bPsRegular, bPsOperator, 
+      cPsPassword, mPsAuthority, fPsSelfTimes, 
+      fPsPwTimes, cPsPostCode, cPsPostName, 
+      bPsManager, fPsBasicSalary, fPsYearSubsidy, 
+      cPsTitleCode, cPsTitleName, fPsTitleSubsidy, 
+      fPsHelthSubsidy, fPsFixSubsidy1, fPsFixSubsidy2, 
+      fPsOtherSubsidy1, fPSFree1, cPSFree2, 
+      cPSEducationCode, cPsEducationName, fPSEducationSubsidy, 
+      fPsPerformanceSalary, fPsYLBX, fPSSYBX, 
+      fPsYiLBX, bPSNeedSalaryCalculate, cPsWorkTypeCode, 
+      cPsWorkTypeName, cPsWorkTypeRatioName, 
+      fPsWorkTypeRation, cPSIncludedDepartmentCode, 
+      cPSIncludedDepartmentName, fPsEquipmentSubsidy
+      )
+    values (#{cpscode,jdbcType=NVARCHAR}, #{cpsname,jdbcType=NVARCHAR}, #{cpssex,jdbcType=NVARCHAR}, 
+      #{cpsdepartmentcode,jdbcType=NVARCHAR}, #{cpsdepartmentname,jdbcType=NVARCHAR}, 
+      #{bpsattendcheck,jdbcType=BIT}, #{cpsnational,jdbcType=NVARCHAR}, #{cpshdcode,jdbcType=NVARCHAR}, 
+      #{cpsbankaccount,jdbcType=NVARCHAR}, #{cpsemail,jdbcType=NVARCHAR}, #{cpsphonenumber,jdbcType=NVARCHAR}, 
+      #{dpsbirthday,jdbcType=TIMESTAMP}, #{dpshareday,jdbcType=TIMESTAMP}, #{dpsfireday,jdbcType=TIMESTAMP}, 
+      #{bpspiecework,jdbcType=BIT}, #{bpsregular,jdbcType=BIT}, #{bpsoperator,jdbcType=BIT}, 
+      #{cpspassword,jdbcType=NVARCHAR}, #{mpsauthority,jdbcType=NVARCHAR}, #{fpsselftimes,jdbcType=DOUBLE}, 
+      #{fpspwtimes,jdbcType=DOUBLE}, #{cpspostcode,jdbcType=NVARCHAR}, #{cpspostname,jdbcType=NVARCHAR}, 
+      #{bpsmanager,jdbcType=BIT}, #{fpsbasicsalary,jdbcType=DOUBLE}, #{fpsyearsubsidy,jdbcType=DOUBLE}, 
+      #{cpstitlecode,jdbcType=NVARCHAR}, #{cpstitlename,jdbcType=NVARCHAR}, #{fpstitlesubsidy,jdbcType=DOUBLE}, 
+      #{fpshelthsubsidy,jdbcType=DOUBLE}, #{fpsfixsubsidy1,jdbcType=DOUBLE}, #{fpsfixsubsidy2,jdbcType=DOUBLE}, 
+      #{fpsothersubsidy1,jdbcType=DOUBLE}, #{fpsfree1,jdbcType=DOUBLE}, #{cpsfree2,jdbcType=VARCHAR}, 
+      #{cpseducationcode,jdbcType=NVARCHAR}, #{cpseducationname,jdbcType=NVARCHAR}, #{fpseducationsubsidy,jdbcType=CHAR}, 
+      #{fpsperformancesalary,jdbcType=DOUBLE}, #{fpsylbx,jdbcType=DOUBLE}, #{fpssybx,jdbcType=DOUBLE}, 
+      #{fpsyilbx,jdbcType=DOUBLE}, #{bpsneedsalarycalculate,jdbcType=BIT}, #{cpsworktypecode,jdbcType=NVARCHAR}, 
+      #{cpsworktypename,jdbcType=NVARCHAR}, #{cpsworktyperationame,jdbcType=NVARCHAR}, 
+      #{fpsworktyperation,jdbcType=DECIMAL}, #{cpsincludeddepartmentcode,jdbcType=NVARCHAR}, 
+      #{cpsincludeddepartmentname,jdbcType=NVARCHAR}, #{fpsequipmentsubsidy,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.paincupid.springmvc.yanz.model.People">
+    insert into B_Person
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cpscode != null">
+        cPsCode,
+      </if>
+      <if test="cpsname != null">
+        cPsName,
+      </if>
+      <if test="cpssex != null">
+        cPsSex,
+      </if>
+      <if test="cpsdepartmentcode != null">
+        cPsDepartmentCode,
+      </if>
+      <if test="cpsdepartmentname != null">
+        cPsDepartmentName,
+      </if>
+      <if test="bpsattendcheck != null">
+        bPsAttendCheck,
+      </if>
+      <if test="cpsnational != null">
+        cPsNational,
+      </if>
+      <if test="cpshdcode != null">
+        cPsHDCode,
+      </if>
+      <if test="cpsbankaccount != null">
+        cPsBankAccount,
+      </if>
+      <if test="cpsemail != null">
+        cPsEmail,
+      </if>
+      <if test="cpsphonenumber != null">
+        cPsPhoneNumber,
+      </if>
+      <if test="dpsbirthday != null">
+        dPsBirthday,
+      </if>
+      <if test="dpshareday != null">
+        dPsHareDay,
+      </if>
+      <if test="dpsfireday != null">
+        dPsFireDay,
+      </if>
+      <if test="bpspiecework != null">
+        bPsPieceWork,
+      </if>
+      <if test="bpsregular != null">
+        bPsRegular,
+      </if>
+      <if test="bpsoperator != null">
+        bPsOperator,
+      </if>
+      <if test="cpspassword != null">
+        cPsPassword,
+      </if>
+      <if test="mpsauthority != null">
+        mPsAuthority,
+      </if>
+      <if test="fpsselftimes != null">
+        fPsSelfTimes,
+      </if>
+      <if test="fpspwtimes != null">
+        fPsPwTimes,
+      </if>
+      <if test="cpspostcode != null">
+        cPsPostCode,
+      </if>
+      <if test="cpspostname != null">
+        cPsPostName,
+      </if>
+      <if test="bpsmanager != null">
+        bPsManager,
+      </if>
+      <if test="fpsbasicsalary != null">
+        fPsBasicSalary,
+      </if>
+      <if test="fpsyearsubsidy != null">
+        fPsYearSubsidy,
+      </if>
+      <if test="cpstitlecode != null">
+        cPsTitleCode,
+      </if>
+      <if test="cpstitlename != null">
+        cPsTitleName,
+      </if>
+      <if test="fpstitlesubsidy != null">
+        fPsTitleSubsidy,
+      </if>
+      <if test="fpshelthsubsidy != null">
+        fPsHelthSubsidy,
+      </if>
+      <if test="fpsfixsubsidy1 != null">
+        fPsFixSubsidy1,
+      </if>
+      <if test="fpsfixsubsidy2 != null">
+        fPsFixSubsidy2,
+      </if>
+      <if test="fpsothersubsidy1 != null">
+        fPsOtherSubsidy1,
+      </if>
+      <if test="fpsfree1 != null">
+        fPSFree1,
+      </if>
+      <if test="cpsfree2 != null">
+        cPSFree2,
+      </if>
+      <if test="cpseducationcode != null">
+        cPSEducationCode,
+      </if>
+      <if test="cpseducationname != null">
+        cPsEducationName,
+      </if>
+      <if test="fpseducationsubsidy != null">
+        fPSEducationSubsidy,
+      </if>
+      <if test="fpsperformancesalary != null">
+        fPsPerformanceSalary,
+      </if>
+      <if test="fpsylbx != null">
+        fPsYLBX,
+      </if>
+      <if test="fpssybx != null">
+        fPSSYBX,
+      </if>
+      <if test="fpsyilbx != null">
+        fPsYiLBX,
+      </if>
+      <if test="bpsneedsalarycalculate != null">
+        bPSNeedSalaryCalculate,
+      </if>
+      <if test="cpsworktypecode != null">
+        cPsWorkTypeCode,
+      </if>
+      <if test="cpsworktypename != null">
+        cPsWorkTypeName,
+      </if>
+      <if test="cpsworktyperationame != null">
+        cPsWorkTypeRatioName,
+      </if>
+      <if test="fpsworktyperation != null">
+        fPsWorkTypeRation,
+      </if>
+      <if test="cpsincludeddepartmentcode != null">
+        cPSIncludedDepartmentCode,
+      </if>
+      <if test="cpsincludeddepartmentname != null">
+        cPSIncludedDepartmentName,
+      </if>
+      <if test="fpsequipmentsubsidy != null">
+        fPsEquipmentSubsidy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cpscode != null">
+        #{cpscode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsname != null">
+        #{cpsname,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpssex != null">
+        #{cpssex,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsdepartmentcode != null">
+        #{cpsdepartmentcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsdepartmentname != null">
+        #{cpsdepartmentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="bpsattendcheck != null">
+        #{bpsattendcheck,jdbcType=BIT},
+      </if>
+      <if test="cpsnational != null">
+        #{cpsnational,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpshdcode != null">
+        #{cpshdcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsbankaccount != null">
+        #{cpsbankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsemail != null">
+        #{cpsemail,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsphonenumber != null">
+        #{cpsphonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="dpsbirthday != null">
+        #{dpsbirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dpshareday != null">
+        #{dpshareday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dpsfireday != null">
+        #{dpsfireday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bpspiecework != null">
+        #{bpspiecework,jdbcType=BIT},
+      </if>
+      <if test="bpsregular != null">
+        #{bpsregular,jdbcType=BIT},
+      </if>
+      <if test="bpsoperator != null">
+        #{bpsoperator,jdbcType=BIT},
+      </if>
+      <if test="cpspassword != null">
+        #{cpspassword,jdbcType=NVARCHAR},
+      </if>
+      <if test="mpsauthority != null">
+        #{mpsauthority,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpsselftimes != null">
+        #{fpsselftimes,jdbcType=DOUBLE},
+      </if>
+      <if test="fpspwtimes != null">
+        #{fpspwtimes,jdbcType=DOUBLE},
+      </if>
+      <if test="cpspostcode != null">
+        #{cpspostcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpspostname != null">
+        #{cpspostname,jdbcType=NVARCHAR},
+      </if>
+      <if test="bpsmanager != null">
+        #{bpsmanager,jdbcType=BIT},
+      </if>
+      <if test="fpsbasicsalary != null">
+        #{fpsbasicsalary,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsyearsubsidy != null">
+        #{fpsyearsubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="cpstitlecode != null">
+        #{cpstitlecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpstitlename != null">
+        #{cpstitlename,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpstitlesubsidy != null">
+        #{fpstitlesubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="fpshelthsubsidy != null">
+        #{fpshelthsubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsfixsubsidy1 != null">
+        #{fpsfixsubsidy1,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsfixsubsidy2 != null">
+        #{fpsfixsubsidy2,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsothersubsidy1 != null">
+        #{fpsothersubsidy1,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsfree1 != null">
+        #{fpsfree1,jdbcType=DOUBLE},
+      </if>
+      <if test="cpsfree2 != null">
+        #{cpsfree2,jdbcType=VARCHAR},
+      </if>
+      <if test="cpseducationcode != null">
+        #{cpseducationcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpseducationname != null">
+        #{cpseducationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpseducationsubsidy != null">
+        #{fpseducationsubsidy,jdbcType=CHAR},
+      </if>
+      <if test="fpsperformancesalary != null">
+        #{fpsperformancesalary,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsylbx != null">
+        #{fpsylbx,jdbcType=DOUBLE},
+      </if>
+      <if test="fpssybx != null">
+        #{fpssybx,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsyilbx != null">
+        #{fpsyilbx,jdbcType=DOUBLE},
+      </if>
+      <if test="bpsneedsalarycalculate != null">
+        #{bpsneedsalarycalculate,jdbcType=BIT},
+      </if>
+      <if test="cpsworktypecode != null">
+        #{cpsworktypecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsworktypename != null">
+        #{cpsworktypename,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsworktyperationame != null">
+        #{cpsworktyperationame,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpsworktyperation != null">
+        #{fpsworktyperation,jdbcType=DECIMAL},
+      </if>
+      <if test="cpsincludeddepartmentcode != null">
+        #{cpsincludeddepartmentcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsincludeddepartmentname != null">
+        #{cpsincludeddepartmentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpsequipmentsubsidy != null">
+        #{fpsequipmentsubsidy,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update B_Person
+    <set>
+      <if test="record.cpscode != null">
+        cPsCode = #{record.cpscode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsname != null">
+        cPsName = #{record.cpsname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpssex != null">
+        cPsSex = #{record.cpssex,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsdepartmentcode != null">
+        cPsDepartmentCode = #{record.cpsdepartmentcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsdepartmentname != null">
+        cPsDepartmentName = #{record.cpsdepartmentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.bpsattendcheck != null">
+        bPsAttendCheck = #{record.bpsattendcheck,jdbcType=BIT},
+      </if>
+      <if test="record.cpsnational != null">
+        cPsNational = #{record.cpsnational,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpshdcode != null">
+        cPsHDCode = #{record.cpshdcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsbankaccount != null">
+        cPsBankAccount = #{record.cpsbankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsemail != null">
+        cPsEmail = #{record.cpsemail,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsphonenumber != null">
+        cPsPhoneNumber = #{record.cpsphonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.dpsbirthday != null">
+        dPsBirthday = #{record.dpsbirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dpshareday != null">
+        dPsHareDay = #{record.dpshareday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dpsfireday != null">
+        dPsFireDay = #{record.dpsfireday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bpspiecework != null">
+        bPsPieceWork = #{record.bpspiecework,jdbcType=BIT},
+      </if>
+      <if test="record.bpsregular != null">
+        bPsRegular = #{record.bpsregular,jdbcType=BIT},
+      </if>
+      <if test="record.bpsoperator != null">
+        bPsOperator = #{record.bpsoperator,jdbcType=BIT},
+      </if>
+      <if test="record.cpspassword != null">
+        cPsPassword = #{record.cpspassword,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.mpsauthority != null">
+        mPsAuthority = #{record.mpsauthority,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.fpsselftimes != null">
+        fPsSelfTimes = #{record.fpsselftimes,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpspwtimes != null">
+        fPsPwTimes = #{record.fpspwtimes,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cpspostcode != null">
+        cPsPostCode = #{record.cpspostcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpspostname != null">
+        cPsPostName = #{record.cpspostname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.bpsmanager != null">
+        bPsManager = #{record.bpsmanager,jdbcType=BIT},
+      </if>
+      <if test="record.fpsbasicsalary != null">
+        fPsBasicSalary = #{record.fpsbasicsalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsyearsubsidy != null">
+        fPsYearSubsidy = #{record.fpsyearsubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cpstitlecode != null">
+        cPsTitleCode = #{record.cpstitlecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpstitlename != null">
+        cPsTitleName = #{record.cpstitlename,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.fpstitlesubsidy != null">
+        fPsTitleSubsidy = #{record.fpstitlesubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpshelthsubsidy != null">
+        fPsHelthSubsidy = #{record.fpshelthsubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsfixsubsidy1 != null">
+        fPsFixSubsidy1 = #{record.fpsfixsubsidy1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsfixsubsidy2 != null">
+        fPsFixSubsidy2 = #{record.fpsfixsubsidy2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsothersubsidy1 != null">
+        fPsOtherSubsidy1 = #{record.fpsothersubsidy1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsfree1 != null">
+        fPSFree1 = #{record.fpsfree1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cpsfree2 != null">
+        cPSFree2 = #{record.cpsfree2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cpseducationcode != null">
+        cPSEducationCode = #{record.cpseducationcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpseducationname != null">
+        cPsEducationName = #{record.cpseducationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.fpseducationsubsidy != null">
+        fPSEducationSubsidy = #{record.fpseducationsubsidy,jdbcType=CHAR},
+      </if>
+      <if test="record.fpsperformancesalary != null">
+        fPsPerformanceSalary = #{record.fpsperformancesalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsylbx != null">
+        fPsYLBX = #{record.fpsylbx,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpssybx != null">
+        fPSSYBX = #{record.fpssybx,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fpsyilbx != null">
+        fPsYiLBX = #{record.fpsyilbx,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bpsneedsalarycalculate != null">
+        bPSNeedSalaryCalculate = #{record.bpsneedsalarycalculate,jdbcType=BIT},
+      </if>
+      <if test="record.cpsworktypecode != null">
+        cPsWorkTypeCode = #{record.cpsworktypecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsworktypename != null">
+        cPsWorkTypeName = #{record.cpsworktypename,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsworktyperationame != null">
+        cPsWorkTypeRatioName = #{record.cpsworktyperationame,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.fpsworktyperation != null">
+        fPsWorkTypeRation = #{record.fpsworktyperation,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cpsincludeddepartmentcode != null">
+        cPSIncludedDepartmentCode = #{record.cpsincludeddepartmentcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cpsincludeddepartmentname != null">
+        cPSIncludedDepartmentName = #{record.cpsincludeddepartmentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.fpsequipmentsubsidy != null">
+        fPsEquipmentSubsidy = #{record.fpsequipmentsubsidy,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update B_Person
+    set cPsCode = #{record.cpscode,jdbcType=NVARCHAR},
+      cPsName = #{record.cpsname,jdbcType=NVARCHAR},
+      cPsSex = #{record.cpssex,jdbcType=NVARCHAR},
+      cPsDepartmentCode = #{record.cpsdepartmentcode,jdbcType=NVARCHAR},
+      cPsDepartmentName = #{record.cpsdepartmentname,jdbcType=NVARCHAR},
+      bPsAttendCheck = #{record.bpsattendcheck,jdbcType=BIT},
+      cPsNational = #{record.cpsnational,jdbcType=NVARCHAR},
+      cPsHDCode = #{record.cpshdcode,jdbcType=NVARCHAR},
+      cPsBankAccount = #{record.cpsbankaccount,jdbcType=NVARCHAR},
+      cPsEmail = #{record.cpsemail,jdbcType=NVARCHAR},
+      cPsPhoneNumber = #{record.cpsphonenumber,jdbcType=NVARCHAR},
+      dPsBirthday = #{record.dpsbirthday,jdbcType=TIMESTAMP},
+      dPsHareDay = #{record.dpshareday,jdbcType=TIMESTAMP},
+      dPsFireDay = #{record.dpsfireday,jdbcType=TIMESTAMP},
+      bPsPieceWork = #{record.bpspiecework,jdbcType=BIT},
+      bPsRegular = #{record.bpsregular,jdbcType=BIT},
+      bPsOperator = #{record.bpsoperator,jdbcType=BIT},
+      cPsPassword = #{record.cpspassword,jdbcType=NVARCHAR},
+      mPsAuthority = #{record.mpsauthority,jdbcType=NVARCHAR},
+      fPsSelfTimes = #{record.fpsselftimes,jdbcType=DOUBLE},
+      fPsPwTimes = #{record.fpspwtimes,jdbcType=DOUBLE},
+      cPsPostCode = #{record.cpspostcode,jdbcType=NVARCHAR},
+      cPsPostName = #{record.cpspostname,jdbcType=NVARCHAR},
+      bPsManager = #{record.bpsmanager,jdbcType=BIT},
+      fPsBasicSalary = #{record.fpsbasicsalary,jdbcType=DOUBLE},
+      fPsYearSubsidy = #{record.fpsyearsubsidy,jdbcType=DOUBLE},
+      cPsTitleCode = #{record.cpstitlecode,jdbcType=NVARCHAR},
+      cPsTitleName = #{record.cpstitlename,jdbcType=NVARCHAR},
+      fPsTitleSubsidy = #{record.fpstitlesubsidy,jdbcType=DOUBLE},
+      fPsHelthSubsidy = #{record.fpshelthsubsidy,jdbcType=DOUBLE},
+      fPsFixSubsidy1 = #{record.fpsfixsubsidy1,jdbcType=DOUBLE},
+      fPsFixSubsidy2 = #{record.fpsfixsubsidy2,jdbcType=DOUBLE},
+      fPsOtherSubsidy1 = #{record.fpsothersubsidy1,jdbcType=DOUBLE},
+      fPSFree1 = #{record.fpsfree1,jdbcType=DOUBLE},
+      cPSFree2 = #{record.cpsfree2,jdbcType=VARCHAR},
+      cPSEducationCode = #{record.cpseducationcode,jdbcType=NVARCHAR},
+      cPsEducationName = #{record.cpseducationname,jdbcType=NVARCHAR},
+      fPSEducationSubsidy = #{record.fpseducationsubsidy,jdbcType=CHAR},
+      fPsPerformanceSalary = #{record.fpsperformancesalary,jdbcType=DOUBLE},
+      fPsYLBX = #{record.fpsylbx,jdbcType=DOUBLE},
+      fPSSYBX = #{record.fpssybx,jdbcType=DOUBLE},
+      fPsYiLBX = #{record.fpsyilbx,jdbcType=DOUBLE},
+      bPSNeedSalaryCalculate = #{record.bpsneedsalarycalculate,jdbcType=BIT},
+      cPsWorkTypeCode = #{record.cpsworktypecode,jdbcType=NVARCHAR},
+      cPsWorkTypeName = #{record.cpsworktypename,jdbcType=NVARCHAR},
+      cPsWorkTypeRatioName = #{record.cpsworktyperationame,jdbcType=NVARCHAR},
+      fPsWorkTypeRation = #{record.fpsworktyperation,jdbcType=DECIMAL},
+      cPSIncludedDepartmentCode = #{record.cpsincludeddepartmentcode,jdbcType=NVARCHAR},
+      cPSIncludedDepartmentName = #{record.cpsincludeddepartmentname,jdbcType=NVARCHAR},
+      fPsEquipmentSubsidy = #{record.fpsequipmentsubsidy,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.paincupid.springmvc.yanz.model.People">
+    update B_Person
+    <set>
+      <if test="cpsname != null">
+        cPsName = #{cpsname,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpssex != null">
+        cPsSex = #{cpssex,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsdepartmentcode != null">
+        cPsDepartmentCode = #{cpsdepartmentcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsdepartmentname != null">
+        cPsDepartmentName = #{cpsdepartmentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="bpsattendcheck != null">
+        bPsAttendCheck = #{bpsattendcheck,jdbcType=BIT},
+      </if>
+      <if test="cpsnational != null">
+        cPsNational = #{cpsnational,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpshdcode != null">
+        cPsHDCode = #{cpshdcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsbankaccount != null">
+        cPsBankAccount = #{cpsbankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsemail != null">
+        cPsEmail = #{cpsemail,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsphonenumber != null">
+        cPsPhoneNumber = #{cpsphonenumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="dpsbirthday != null">
+        dPsBirthday = #{dpsbirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dpshareday != null">
+        dPsHareDay = #{dpshareday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dpsfireday != null">
+        dPsFireDay = #{dpsfireday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bpspiecework != null">
+        bPsPieceWork = #{bpspiecework,jdbcType=BIT},
+      </if>
+      <if test="bpsregular != null">
+        bPsRegular = #{bpsregular,jdbcType=BIT},
+      </if>
+      <if test="bpsoperator != null">
+        bPsOperator = #{bpsoperator,jdbcType=BIT},
+      </if>
+      <if test="cpspassword != null">
+        cPsPassword = #{cpspassword,jdbcType=NVARCHAR},
+      </if>
+      <if test="mpsauthority != null">
+        mPsAuthority = #{mpsauthority,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpsselftimes != null">
+        fPsSelfTimes = #{fpsselftimes,jdbcType=DOUBLE},
+      </if>
+      <if test="fpspwtimes != null">
+        fPsPwTimes = #{fpspwtimes,jdbcType=DOUBLE},
+      </if>
+      <if test="cpspostcode != null">
+        cPsPostCode = #{cpspostcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpspostname != null">
+        cPsPostName = #{cpspostname,jdbcType=NVARCHAR},
+      </if>
+      <if test="bpsmanager != null">
+        bPsManager = #{bpsmanager,jdbcType=BIT},
+      </if>
+      <if test="fpsbasicsalary != null">
+        fPsBasicSalary = #{fpsbasicsalary,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsyearsubsidy != null">
+        fPsYearSubsidy = #{fpsyearsubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="cpstitlecode != null">
+        cPsTitleCode = #{cpstitlecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpstitlename != null">
+        cPsTitleName = #{cpstitlename,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpstitlesubsidy != null">
+        fPsTitleSubsidy = #{fpstitlesubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="fpshelthsubsidy != null">
+        fPsHelthSubsidy = #{fpshelthsubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsfixsubsidy1 != null">
+        fPsFixSubsidy1 = #{fpsfixsubsidy1,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsfixsubsidy2 != null">
+        fPsFixSubsidy2 = #{fpsfixsubsidy2,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsothersubsidy1 != null">
+        fPsOtherSubsidy1 = #{fpsothersubsidy1,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsfree1 != null">
+        fPSFree1 = #{fpsfree1,jdbcType=DOUBLE},
+      </if>
+      <if test="cpsfree2 != null">
+        cPSFree2 = #{cpsfree2,jdbcType=VARCHAR},
+      </if>
+      <if test="cpseducationcode != null">
+        cPSEducationCode = #{cpseducationcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpseducationname != null">
+        cPsEducationName = #{cpseducationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpseducationsubsidy != null">
+        fPSEducationSubsidy = #{fpseducationsubsidy,jdbcType=CHAR},
+      </if>
+      <if test="fpsperformancesalary != null">
+        fPsPerformanceSalary = #{fpsperformancesalary,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsylbx != null">
+        fPsYLBX = #{fpsylbx,jdbcType=DOUBLE},
+      </if>
+      <if test="fpssybx != null">
+        fPSSYBX = #{fpssybx,jdbcType=DOUBLE},
+      </if>
+      <if test="fpsyilbx != null">
+        fPsYiLBX = #{fpsyilbx,jdbcType=DOUBLE},
+      </if>
+      <if test="bpsneedsalarycalculate != null">
+        bPSNeedSalaryCalculate = #{bpsneedsalarycalculate,jdbcType=BIT},
+      </if>
+      <if test="cpsworktypecode != null">
+        cPsWorkTypeCode = #{cpsworktypecode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsworktypename != null">
+        cPsWorkTypeName = #{cpsworktypename,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsworktyperationame != null">
+        cPsWorkTypeRatioName = #{cpsworktyperationame,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpsworktyperation != null">
+        fPsWorkTypeRation = #{fpsworktyperation,jdbcType=DECIMAL},
+      </if>
+      <if test="cpsincludeddepartmentcode != null">
+        cPSIncludedDepartmentCode = #{cpsincludeddepartmentcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpsincludeddepartmentname != null">
+        cPSIncludedDepartmentName = #{cpsincludeddepartmentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="fpsequipmentsubsidy != null">
+        fPsEquipmentSubsidy = #{fpsequipmentsubsidy,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where cPsCode = #{cpscode,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.paincupid.springmvc.yanz.model.People">
+    update B_Person
+    set cPsName = #{cpsname,jdbcType=NVARCHAR},
+      cPsSex = #{cpssex,jdbcType=NVARCHAR},
+      cPsDepartmentCode = #{cpsdepartmentcode,jdbcType=NVARCHAR},
+      cPsDepartmentName = #{cpsdepartmentname,jdbcType=NVARCHAR},
+      bPsAttendCheck = #{bpsattendcheck,jdbcType=BIT},
+      cPsNational = #{cpsnational,jdbcType=NVARCHAR},
+      cPsHDCode = #{cpshdcode,jdbcType=NVARCHAR},
+      cPsBankAccount = #{cpsbankaccount,jdbcType=NVARCHAR},
+      cPsEmail = #{cpsemail,jdbcType=NVARCHAR},
+      cPsPhoneNumber = #{cpsphonenumber,jdbcType=NVARCHAR},
+      dPsBirthday = #{dpsbirthday,jdbcType=TIMESTAMP},
+      dPsHareDay = #{dpshareday,jdbcType=TIMESTAMP},
+      dPsFireDay = #{dpsfireday,jdbcType=TIMESTAMP},
+      bPsPieceWork = #{bpspiecework,jdbcType=BIT},
+      bPsRegular = #{bpsregular,jdbcType=BIT},
+      bPsOperator = #{bpsoperator,jdbcType=BIT},
+      cPsPassword = #{cpspassword,jdbcType=NVARCHAR},
+      mPsAuthority = #{mpsauthority,jdbcType=NVARCHAR},
+      fPsSelfTimes = #{fpsselftimes,jdbcType=DOUBLE},
+      fPsPwTimes = #{fpspwtimes,jdbcType=DOUBLE},
+      cPsPostCode = #{cpspostcode,jdbcType=NVARCHAR},
+      cPsPostName = #{cpspostname,jdbcType=NVARCHAR},
+      bPsManager = #{bpsmanager,jdbcType=BIT},
+      fPsBasicSalary = #{fpsbasicsalary,jdbcType=DOUBLE},
+      fPsYearSubsidy = #{fpsyearsubsidy,jdbcType=DOUBLE},
+      cPsTitleCode = #{cpstitlecode,jdbcType=NVARCHAR},
+      cPsTitleName = #{cpstitlename,jdbcType=NVARCHAR},
+      fPsTitleSubsidy = #{fpstitlesubsidy,jdbcType=DOUBLE},
+      fPsHelthSubsidy = #{fpshelthsubsidy,jdbcType=DOUBLE},
+      fPsFixSubsidy1 = #{fpsfixsubsidy1,jdbcType=DOUBLE},
+      fPsFixSubsidy2 = #{fpsfixsubsidy2,jdbcType=DOUBLE},
+      fPsOtherSubsidy1 = #{fpsothersubsidy1,jdbcType=DOUBLE},
+      fPSFree1 = #{fpsfree1,jdbcType=DOUBLE},
+      cPSFree2 = #{cpsfree2,jdbcType=VARCHAR},
+      cPSEducationCode = #{cpseducationcode,jdbcType=NVARCHAR},
+      cPsEducationName = #{cpseducationname,jdbcType=NVARCHAR},
+      fPSEducationSubsidy = #{fpseducationsubsidy,jdbcType=CHAR},
+      fPsPerformanceSalary = #{fpsperformancesalary,jdbcType=DOUBLE},
+      fPsYLBX = #{fpsylbx,jdbcType=DOUBLE},
+      fPSSYBX = #{fpssybx,jdbcType=DOUBLE},
+      fPsYiLBX = #{fpsyilbx,jdbcType=DOUBLE},
+      bPSNeedSalaryCalculate = #{bpsneedsalarycalculate,jdbcType=BIT},
+      cPsWorkTypeCode = #{cpsworktypecode,jdbcType=NVARCHAR},
+      cPsWorkTypeName = #{cpsworktypename,jdbcType=NVARCHAR},
+      cPsWorkTypeRatioName = #{cpsworktyperationame,jdbcType=NVARCHAR},
+      fPsWorkTypeRation = #{fpsworktyperation,jdbcType=DECIMAL},
+      cPSIncludedDepartmentCode = #{cpsincludeddepartmentcode,jdbcType=NVARCHAR},
+      cPSIncludedDepartmentName = #{cpsincludeddepartmentname,jdbcType=NVARCHAR},
+      fPsEquipmentSubsidy = #{fpsequipmentsubsidy,jdbcType=DECIMAL}
+    where cPsCode = #{cpscode,jdbcType=NVARCHAR}
+  </update>
+</mapper>
